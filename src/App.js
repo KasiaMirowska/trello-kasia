@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import STORE from './store.js';
+import AllLists from './AllLists';
+import List from './List';
+import Card from './Card'
 
-function App() {
+export default function App() {
+  const storeLists = STORE.lists;
+  storeLists.map((list) => {
+    return <List
+             key={list.id}
+             header={list.header}
+             cards={list.cardIds.map(id => STORE.allCards[id])}
+           />
+}) 
+  console.log(storeLists);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <header className="App-header">
+      <h1>Trelloyes!</h1>
+    </header>
+    <main>
+      <List />
+    </main>
     </div>
   );
 }
 
-export default App;
+

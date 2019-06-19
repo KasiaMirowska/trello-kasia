@@ -13,16 +13,16 @@ export default function App() {
       <header className="App-header">
         <h1>Trelloyes!</h1>
       </header>
-      <main>
-        {storeLists.map(list => {
-            console.log(list);
-            return <List
-                    key={list.id}
-                    header={list.header}
-                    cards={list.cardIds.map(id => STORE.allCards[id])}
-                  />
-          })}
-      </main>
+      <div className="App-list">
+          {storeLists.map(list => {
+              console.log(list);
+              return <List
+                      key={list.id}
+                      header={list.header}
+                      cards={list.cardIds.map(id => STORE.allCards[id])}
+                    />
+            })}
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import './List.css';
 
 
 export default function List(props) {
-    console.log(props.cards)
+    console.log(props.cards);
     return (
             <section className="List">
                 <header className="List-header">

@@ -41,19 +41,37 @@ export default class App extends React.Component {
     })
   }
 
+  removeId(arr, id) {
+    const index = arr.indexOf(id);
+    const newArr = [...arr.slice(0, index), ...arr.slice(index+1)];
+    return newArr;
+  }
 
   handleDelete =(listId, cardId)=>{
-    console.log(this.state.cards, 'before')
-    console.log('i am deleting', listId, cardId)
-    function omit(obj, keyToOmit) {
-      return Object.entries(obj).reduce(
-        (newObj, [key, value]) =>
-            key === keyToOmit ? newObj : {...newObj, [key]: value},
-        {}
-      );
-    }
-    let newAllCards = omit(this.state.cards, cardId);
-    console.log( newAllCards)
+    // function omit(obj, keyToOmit) {
+    //   return Object.entries(obj).reduce(
+    //     (newObj, [key, value]) =>
+    //         key === keyToOmit ? newObj : {...newObj, [key]: value},
+    //     {}
+    //   );
+    // }
+    // let newAllCards = omit(this.state.cards, cardId);
+    
+    let smallerList = this.state.lists.map(list => {
+      if ( list.id === listId ) {
+        let cardIds = list.cardIds;
+        cardIds = this.removeId(cardIds, cardId);
+        const smallerList = Object.assign({}, list, {cardIds});
+        return smallerList;
+      } else {
+        return list;
+      }
+    });
+    // console.log(this.state.lists, '<<>>>', smallerList, ',,,,', this.state.cards, '<<<<?????>>>', newAllCards);
+    this.setState({
+      // cards: newAllCards,
+      lists: smallerList
+    });
   }
   
   render() {
@@ -83,5 +101,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-

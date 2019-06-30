@@ -4,6 +4,7 @@ import './List.css';
 
 
 export default function List(props) {
+    console.log(props.cards.length);
     return (
             <section className="List">
                 <header className="List-header">
@@ -11,7 +12,7 @@ export default function List(props) {
                 </header>
                 <div className="List-cards">
                     {props.cards.map(card => {
-                        // console.log(card, 'CARDBABY')
+                        console.log(card, 'CARDBABY')
                         return <Card
                             key={card.id}
                             cardId={card.id}
